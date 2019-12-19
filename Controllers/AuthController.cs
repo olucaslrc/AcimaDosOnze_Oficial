@@ -20,6 +20,20 @@ namespace AcimaDosOnze_Oficial.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost("verifyCredentials")]
+        public IActionResult VerifyCredentials([FromBody]User model)
+        {
+            if (_userService.ValidateToken(model.UserName) == false || _userService.VerifyToken(model.UserName) == false)
+            {
+                return Unauthorized("Acesso não autorizado, faça login novamente");
+            }
+            else
+            {
+                return Ok("Acesso Ok");
+            }
+        }
+
+        [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult RegisterUser([FromBody]User model)
         {

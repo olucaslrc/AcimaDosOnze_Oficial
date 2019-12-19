@@ -29,7 +29,6 @@ namespace AcimaDosOnze_Oficial.Controllers
         {
             var user = HttpContext.User;
             
-            //Proibe quem estiver com o token na tabela BadTokens ou se o token não estiver válido
             if (_userService.ValidateToken(model.Username) == false || _userService.VerifyToken(model.Username) == false)
             {
                 return Unauthorized("Acesso não autorizado, faça login novamente");
