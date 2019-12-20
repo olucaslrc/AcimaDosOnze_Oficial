@@ -1,65 +1,42 @@
+using System;
+
 namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
 {
     public class GetDate
     {
-        public string ConvertDateMetar(string Metar)
+        public string[] ConvertDateMetar(string Metar)
         {
-            var dateYY = Metar.Substring(0, 4);
-            var dateMM = Metar.Substring(4, 2);
-            var dateDD = Metar.Substring(6, 2);
+            var stringYY = Metar.Substring(0, 4);
+            var stringMM = Metar.Substring(4, 2);
+            var stringDD = Metar.Substring(6, 2);
 
-            switch (dateMM)
+            try
             {
-                case "1":
-                    dateMM = "Janeiro";
-                break;
-                
-                case "2":
-                    dateMM = "Fevereiro";
-                break;
+                var YY = int.Parse(stringYY);
+                var MM = int.Parse(stringMM);
+                var DD = int.Parse(stringDD);
 
-                case "3":
-                    dateMM = "Março";
-                break;
+                string[] arrayResult = {
+                    $"{DateTime.Parse($"{DD},{MM},{YY}").ToString("dd/MM/yy")}",
+                    $"{DateTime.Parse($"{DD},{MM},{YY}").ToString("dd")} de " +
+                    $"{DateTime.Parse($"{DD},{MM},{YY}").ToString("MMMM")} de " +
+                    $"{DateTime.Parse($"{DD},{MM},{YY}").ToString("yyyy")}",
+                };
 
-                case "4":
-                    dateMM = "Abril";
-                break;
-
-                case "5":
-                    dateMM = "Maio";
-                break;
-
-                case "6":
-                    dateMM = "Junho";
-                break;
-
-                case "7":
-                    dateMM = "Julho";
-                break;
-
-                case "8":
-                    dateMM = "Agosto";
-                break;
-
-                case "9":
-                    dateMM = "Setembro";
-                break;
-
-                case "10":
-                    dateMM = "Outubro";
-                break;
-
-                case "11":
-                    dateMM = "Novembro";
-                break;
-
-                case "12":
-                    dateMM = "Dezembro";
-                break;
+                return arrayResult; 
             }
+            catch (System.Exception Exception)
+            {
+                Console.WriteLine(  $"\n___________________________________________________________________\n" +
+                                    $"\nExceção executada, verifique-a:\n\n{Exception}" +
+                                    $"\n___________________________________________________________________\n" );
 
-            return $"{dateDD} de {dateMM} de {dateYY}";
+                string[] arrayResult = {
+                    "Não foi possível converter a data do METAR, confira o código."
+                };
+
+                return arrayResult;
+            }
         } 
     }
 }
