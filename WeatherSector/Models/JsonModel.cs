@@ -2,7 +2,7 @@ namespace AcimaDosOnze_Oficial.WeatherSector.Models
 {
     public class JsonModel
     {
-        public string Date { get; set; }
+        public string[] Date { get; set; }
         public string Hour { get; set; }
         public string WindDirection { get; set; }
         public string WindSpeed { get; set; }

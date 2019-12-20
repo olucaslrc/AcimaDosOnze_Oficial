@@ -17,8 +17,8 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
 
         public string GetJson(string Metar)
         {
-            string date, hour, windDirection, windSpeed, visibility, temperature, dewPoint, pression;
-            string[] weather;
+            string hour, windDirection, windSpeed, visibility, temperature, dewPoint, pression;
+            string[] date, weather;
 
             date = Gdate.ConvertDateMetar(Metar);
             hour = Ghour.ConvertHourMetar(Metar);
