@@ -7,9 +7,10 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
             try
             {
                 string dewPoint = Metar.Substring(Metar.IndexOf("/"), 3).Substring(1);
-                int dP = int.Parse(dewPoint);
 
-                return dP.ToString();
+                int testInt = int.Parse(dewPoint);
+
+                return dewPoint;
             }
             catch (System.Exception)
             {

@@ -10,57 +10,69 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
         
         public string GetVisibilityMetar(string Metar)
         {
-            var visibility = Metar.Substring(Metar.IndexOf("KT"));
-
-            var resultVisibility = string.Empty;
-
-
-            if (visibility.Substring(3, 12).Contains("9999"))
+            try
             {
-                resultVisibility = "Acima dos 10km";
-            }
-            else if (visibility.Substring(3, 4).Where(c => char.IsLetter(c)).Count() > 0)
-            {
-                if (ListW.Weather.Any(x => x.WeatherTag == visibility) == true)
+                var visibility = Metar.Substring(Metar.IndexOf("KT"));
+
+                var resultVisibility = string.Empty;
+
+
+                if (visibility.Substring(3, 12).Contains("9999"))
                 {
-                    return null;
+                    resultVisibility = "Acima dos 10km";
                 }
-                else
+                else if (visibility.Substring(3, 4).Where(c => char.IsLetter(c)).Count() > 0)
                 {
-                    if (visibility.Substring(6).Contains("V"))
+                    if (ListW.Weather.Any(x => x.WeatherTag == visibility) == true)
                     {
-                        var v = visibility.Substring(11, 4);
-                        
-                        Console.WriteLine(v);
-                        Console.WriteLine(v.Where(c => char.IsNumber(c)).Count() > 0);
-
-                        if(v.Where(c => char.IsNumber(c)).Count() > 0)
+                        return null;
+                    }
+                    else
+                    {
+                        if (visibility.Substring(6).Contains("V"))
                         {
-                            double conv = int.Parse(v);
+                            var v = visibility.Substring(11, 4);
+                            
+                            Console.WriteLine(v);
+                            Console.WriteLine(v.Where(c => char.IsNumber(c)).Count() > 0);
 
-                            var result = conv / 1000;
+                            if(v.Where(c => char.IsNumber(c)).Count() > 0)
+                            {
+                                double conv = int.Parse(v);
 
-                            resultVisibility = $"{result.ToString()}km";
+                                var result = conv / 1000;
+
+                                resultVisibility = $"{result.ToString()}km";
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                double conv = int.Parse(visibility.Substring(3, 5));
+                else
+                {
+                    double conv = int.Parse(visibility.Substring(3, 5));
 
-                var result = conv / 1000;
+                    var result = conv / 1000;
 
-                resultVisibility = $"{result.ToString()}km";
-            }
+                    resultVisibility = $"{result.ToString()}km";
+                }
 
-            if (String.IsNullOrEmpty(resultVisibility))
-            {
-                return "Não informado";
+                if (String.IsNullOrEmpty(resultVisibility))
+                {
+                    return "Não informado";
+                }
+                else
+                {
+                    return $"Distância: {resultVisibility}";
+                }
             }
-            else
+            catch (System.Exception Exception)
             {
-                return $"Distância: {resultVisibility}";
+                Console.WriteLine(  $"\n___________________________________________________________________\n" +
+                                    $"\nData: {DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss")}\n" +
+                                    $"\nExceção executada, verifique-a:\n\n{Exception}" +
+                                    $"\n___________________________________________________________________\n" );
+
+                return "Não foi possível decodificar a visibilidade.";
             }
         }
     }
