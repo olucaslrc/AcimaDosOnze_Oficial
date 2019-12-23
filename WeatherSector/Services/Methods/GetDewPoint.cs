@@ -4,9 +4,18 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
     {
         public string GetDewPointMetar(string Metar)
         {
-            string dewPoint = Metar.Substring(Metar.IndexOf("/"), 3).Substring(1);
+            try
+            {
+                string dewPoint = Metar.Substring(Metar.IndexOf("/"), 3).Substring(1);
+                int dP = int.Parse(dewPoint);
 
-            return dewPoint;
+                return dP.ToString();
+            }
+            catch (System.Exception)
+            {
+                return "Não foi possível decodificar o ponto de orvalho."; 
+            }
+            
         }
     }
 }
