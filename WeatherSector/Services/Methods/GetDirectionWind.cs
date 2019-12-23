@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using AcimaDosOnze_Oficial.Helpers.WeatherHelpers;
 
@@ -8,33 +9,51 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
         private ListWeather ListW = new ListWeather();
         public string GetWindDirection(string Metar)
         {
-            var result = string.Empty;
-
-            var variation = Metar.Substring(Metar.IndexOf("KT"), 9).Substring(3);
-
-            var windDirection = Metar.Substring(32, 3);
-
-            foreach (var item in ListW.Weather)
+            try
             {
-                if (Metar.Contains("VRB"))
-                {
-                    var vrbSpeed = Metar.Substring(Metar.IndexOf("VRB"), 5).Substring(3);
-                    result = "Variante";
-                }
-                else if (!variation.Contains(item.WeatherTag) && variation.Contains("V"))
-                {
-                    if (variation.Substring(variation.IndexOf("V")).Any(c => char.IsNumber(c)))
-                    {
-                        var variation1 = Metar.Substring(Metar.IndexOf("KT")).Substring(3, 3);
-                        var variation2 = Metar.Substring(Metar.IndexOf("KT")).Substring(7, 3);
+                var result = string.Empty;
 
-                        result = $"{variation1} e {variation2}";
+                var variation = Metar.Substring(Metar.IndexOf("KT"), 9).Substring(3);
+
+                var windDirection = Metar.Substring(32, 3);
+
+                int testWindDirection = int.Parse(windDirection);
+
+                foreach (var item in ListW.Weather)
+                {
+                    if (Metar.Contains("VRB"))
+                    {
+                        var vrbSpeed = Metar.Substring(Metar.IndexOf("VRB"), 5).Substring(3);
+                        result = "Variante";
                     }
+                    else if (!variation.Contains(item.WeatherTag) && variation.Contains("V"))
+                    {
+                        if (variation.Substring(variation.IndexOf("V")).Any(c => char.IsNumber(c)))
+                        {
+                            var variation1 = Metar.Substring(Metar.IndexOf("KT")).Substring(3, 3);
+                            var variation2 = Metar.Substring(Metar.IndexOf("KT")).Substring(7, 3);
+
+                            int testVar1 = int.Parse(variation1);
+                            int testVar2 = int.Parse(variation2);
+
+                            result = $"{variation1} e {variation2}";
+                        }
+                    }
+                    
+                    result = windDirection;
                 }
-                
-                result = windDirection;
+                return result;
             }
-            return result;
+            catch (System.Exception Exception)
+            {
+                Console.WriteLine(  $"\n___________________________________________________________________\n" +
+                                    $"\nData: {DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss")}\n" +
+                                    $"\nExceção executada, verifique-a:\n\n{Exception}" +
+                                    $"\n___________________________________________________________________\n" );
+                
+                return "Não foi possível decodificar a direção do vento.";
+            }
+            
         }
     }
 }

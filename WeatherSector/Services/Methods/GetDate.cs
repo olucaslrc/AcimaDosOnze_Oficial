@@ -6,12 +6,12 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
     {
         public string[] ConvertDateMetar(string Metar)
         {
-            var stringYY = Metar.Substring(0, 4);
-            var stringMM = Metar.Substring(4, 2);
-            var stringDD = Metar.Substring(6, 2);
-
             try
             {
+                var stringYY = Metar.Substring(0, 4);
+                var stringMM = Metar.Substring(4, 2);
+                var stringDD = Metar.Substring(6, 2);
+
                 var YY = int.Parse(stringYY);
                 var MM = int.Parse(stringMM);
                 var DD = int.Parse(stringDD);
@@ -28,6 +28,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
             catch (System.Exception Exception)
             {
                 Console.WriteLine(  $"\n___________________________________________________________________\n" +
+                                    $"\nData: {DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss")}\n" +
                                     $"\nExceção executada, verifique-a:\n\n{Exception}" +
                                     $"\n___________________________________________________________________\n" );
 

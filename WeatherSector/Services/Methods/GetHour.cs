@@ -1,12 +1,29 @@
+using System;
+
 namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
 {
     public class GetHour
     {
         public string ConvertHourMetar(string Metar)
         {
-            var dateHH = Metar.Substring(8, 2);
+            try
+            {
+                var dateHH = Metar.Substring(8, 2);
 
-            return $"{dateHH} horas (UTC)";
+                int testInt = int.Parse(dateHH);
+
+                return $"{dateHH} horas (UTC)";
+            }
+            catch (System.Exception Exception)
+            {
+                Console.WriteLine(  $"\n___________________________________________________________________\n" +
+                                    $"\nData: {DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss")}\n" +
+                                    $"\nExceção executada, verifique-a:\n\n{Exception}" +
+                                    $"\n___________________________________________________________________\n" );
+
+                return "Não foi possível decodificar o horário.";
+            }
+            
         }
     }
 }
