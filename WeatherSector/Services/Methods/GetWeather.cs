@@ -83,6 +83,8 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
             {
                 Console.WriteLine(  $"\n___________________________________________________________________\n" +
                                     $"\nData: {DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss")}\n" +
+                                    $"\nClasse:       GetWeather\n" +
+                                    $"\nMétodo:       GetWeatherMetar()\n" +
                                     $"\nExceção executada, verifique-a:\n\n{Exception}" +
                                     $"\n___________________________________________________________________\n" );
                 

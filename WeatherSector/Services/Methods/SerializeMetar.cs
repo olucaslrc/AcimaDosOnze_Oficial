@@ -8,7 +8,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
         private GetDate Gdate = new GetDate();
         private GetHour Ghour = new GetHour();
         private GetDirectionWind Gdirection = new GetDirectionWind();
-        private GetWindSpeedcs Gspeed = new GetWindSpeedcs();
+        private GetWindSpeed Gspeed = new GetWindSpeed();
         private GetVisibility Gvisibility = new GetVisibility();
         private GetWeather Gweather = new GetWeather();
         private GetTemperature Gtemperature = new GetTemperature();

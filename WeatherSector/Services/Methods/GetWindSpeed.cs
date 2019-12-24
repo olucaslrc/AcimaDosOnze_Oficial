@@ -4,7 +4,7 @@ using System;
 
 namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
 {
-    public class GetWindSpeedcs
+    public class GetWindSpeed
     {
         private ListWeather ListW = new ListWeather();
         public string GetSpeedWind(string Metar)
@@ -48,6 +48,8 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
             {
                 Console.WriteLine(  $"\n___________________________________________________________________\n" +
                                     $"\nData: {DateTime.Now.ToString("dd/MM/yyyy - hh:mm:ss")}\n" +
+                                    $"\nClasse:       GetWindSpeed\n" +
+                                    $"\nMétodo:       GetSpeedWind()\n" +
                                     $"\nExceção executada, verifique-a:\n\n{Exception}" +
                                     $"\n___________________________________________________________________\n" );
 
