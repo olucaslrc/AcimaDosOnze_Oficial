@@ -35,7 +35,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                                     $"\n___________________________________________________________________\n" );
 
                 string[] arrayResult = {
-                    "Não foi possível converter a data do METAR, confira o código."
+                    "Não foi possível converter a data do METAR, confira o código"
                 };
 
                 return arrayResult;

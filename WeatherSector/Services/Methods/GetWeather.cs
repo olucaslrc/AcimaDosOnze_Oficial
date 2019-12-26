@@ -89,7 +89,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                                     $"\n___________________________________________________________________\n" );
                 
                 string[] ArrayResult = {
-                    "Não foi possível decodificar o tempo."
+                    "Não foi possível decodificar o tempo"
                 };
 
                 return ArrayResult;

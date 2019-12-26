@@ -29,7 +29,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                                     $"\nExceção executada, verifique-a:\n\n{Exception}" +
                                     $"\n___________________________________________________________________\n" );
 
-                return "Não foi possível decodificar a pressão.";
+                return "Não foi possível decodificar a pressão";
             }
             
         }
