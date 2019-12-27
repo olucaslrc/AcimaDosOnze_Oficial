@@ -24,17 +24,20 @@ namespace AcimaDosOnze_Oficial.Controllers
         }
 
         [Authorize(Roles = Role.User+","+Role.Admin)]
-        [HttpGet("readFavoriteIcao")]
+        [HttpPost("readFavoriteIcao")]
         public IActionResult LerIcaoFavorito([FromBody]AuthenticateModel model)
         {
             var user = HttpContext.User;
+            var favorite = new Favorite();
             
             if (_userService.ValidateToken(model.Username) == false || _userService.VerifyToken(model.Username) == false)
             {
                 return Unauthorized("Acesso não autorizado, faça login novamente");
             }
-
-            var favorite = new Favorite();
+            else if (favorite.ReadFavoriteIcao(model.Username) == null)
+            {
+                return NotFound("Aeródromo não encontrado");
+            }
 
             return Ok(favorite.ReadFavoriteIcao(model.Username));
         }

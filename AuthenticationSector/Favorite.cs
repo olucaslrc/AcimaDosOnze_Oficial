@@ -52,11 +52,11 @@ namespace AcimaDosOnze_Oficial.AuthenticationSector
 
             if (favoriteIcao != null)
             {
-                return $"Seu Aeródromo favorito é: {favoriteIcao.IcaoCode}";
+                return $"{favoriteIcao.IcaoCode}";
             }
             else
             {
-                return "Aeródromo não encontrado.";
+                return null;
             }
         }
 
