@@ -17,8 +17,6 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
 
                 var windDirection = Metar.Substring(32, 3);
 
-                int testWindDirection = int.Parse(windDirection);
-
                 foreach (var item in ListW.Weather)
                 {
                     if (Metar.Contains("VRB"))
@@ -28,6 +26,8 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                     }
                     else if (!variation.Contains(item.WeatherTag) && variation.Contains("V"))
                     {
+                        int testWindDirection = int.Parse(windDirection.ToCharArray());
+
                         if (variation.Substring(variation.IndexOf("V")).Any(c => char.IsNumber(c)))
                         {
                             var variation1 = Metar.Substring(Metar.IndexOf("KT")).Substring(3, 3);
@@ -36,11 +36,15 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                             int testVar1 = int.Parse(variation1);
                             int testVar2 = int.Parse(variation2);
 
-                            result = $"{variation1} e {variation2}";
+                            result = $"{windDirection} com variações entre {variation1} e {variation2}";
                         }
                     }
-                    
-                    result = windDirection;
+                    else
+                    {
+                        int testWindDirection = int.Parse(windDirection.ToCharArray());
+                        
+                        result = windDirection;
+                    }
                 }
                 return result;
             }

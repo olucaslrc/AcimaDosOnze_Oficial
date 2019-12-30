@@ -32,9 +32,6 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                         if (visibility.Substring(6).Contains("V"))
                         {
                             var v = visibility.Substring(11, 4);
-                            
-                            Console.WriteLine(v);
-                            Console.WriteLine(v.Where(c => char.IsNumber(c)).Count() > 0);
 
                             if(v.Where(c => char.IsNumber(c)).Count() > 0)
                             {

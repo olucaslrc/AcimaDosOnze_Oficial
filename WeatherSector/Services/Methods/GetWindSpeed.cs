@@ -34,7 +34,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                         double speedConvertToDoubleForGusts = double.Parse(windSpeed);
                         double speedInKmForGusts = speedConvertToDoubleForGusts * 1.852;
 
-                        result =  $"{windSpeed}kt = {speedInKm.ToString("F1", CultureInfo.InvariantCulture)}km/h com rajadas de"
+                        result =  $"{windSpeed}kt = {speedInKm.ToString("F1", CultureInfo.InvariantCulture)}km/h com rajadas de "
                                 + $"{gusts}kt = {speedInKmForGusts.ToString("F1", CultureInfo.InvariantCulture)}km/h";
                     }
                     else
