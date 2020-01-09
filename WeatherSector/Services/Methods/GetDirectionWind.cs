@@ -13,7 +13,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
             {
                 var result = string.Empty;
 
-                var variation = Metar.Substring(Metar.IndexOf("KT"), 9).Substring(3);
+                var variation = Metar.Substring(Metar.IndexOf("KT"), 9).Substring(3, 3);
 
                 var windDirection = Metar.Substring(32, 3);
 
@@ -43,7 +43,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
                     {
                         int testWindDirection = int.Parse(windDirection.ToCharArray());
                         
-                        result = windDirection;
+                        result = $"{windDirection}°";
                     }
                 }
                 return result;

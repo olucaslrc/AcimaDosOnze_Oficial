@@ -15,8 +15,6 @@ namespace AcimaDosOnze_Oficial.Controllers
     public class UsersController : Controller
     {
         private IUserService _userService;
-        private const bool Reproved = false;
-        private const bool Approved = true;
 
         public UsersController(IUserService userService)
         {
