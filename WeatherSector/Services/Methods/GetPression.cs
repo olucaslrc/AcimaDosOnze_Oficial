@@ -18,7 +18,7 @@ namespace AcimaDosOnze_Oficial.Services.WeatherServices.Methods
 
                 result = Pression;
 
-                return $"QNH: {result}";  
+                return $"QNH: {result} hPa";  
             }
             catch (System.Exception Exception)
             {
