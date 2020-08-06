@@ -20,3 +20,12 @@ https://github.com/lucaslrc/Air-BOT-0.1
 Link para o repositório da página web, referente à este projeto:
 
 https://github.com/lucaslrc/Layout
+
+## Exemplos
+
+![page](/p1.png)
+![page](/p2.png)
+![page](/p3.png)
+![telegram](/t1.jpg)
+![telegram](/t2.jpg)
+![telegram](/t3.jpg)
